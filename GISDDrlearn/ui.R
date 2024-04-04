@@ -15,11 +15,10 @@
   fluidPage(
     theme = "bootstrap.css",
     includeCSS("www/styles.css"),
-    
+    #######################################################################
     navbarPage(
       " GISDDrlearn ",
-      
-     # 
+     ######################################################################
       tabPanel(
         "About/Usage 简介",
         h2("GISDDrlearn"),
@@ -53,65 +52,51 @@
           "Phylodynamics unveils invading and diffusing patterns of dengue virus serotype-1 in Guangdong China from 1990 to 2019 under a global genotyping framework",
           target = "_blank"),
       ),
-     #
+     ######################################################################
       tabPanel(
         "Import data 数据导入",
          sidebarLayout(
           
           # Sidebar panel for inputs ----
           sidebarPanel(
-            
             # Input: Select a file ----
             fileInput("file1", "Choose CSV File",
                       multiple = FALSE,
                       accept = c("text/csv",
                                  "text/comma-separated-values,text/plain",
                                  ".csv")),
-            
             # Horizontal line ----
             tags$hr(),
-            
             # Input: Checkbox if file has header ----
             checkboxInput("header", "Header", TRUE),
-            
             # Input: Select separator ----
             radioButtons("sep", "Separator",
                          choices = c(Comma = ",",
                                      Semicolon = ";",
                                      Tab = "\t"),
                          selected = ","),
-            
             # Input: Select quotes ----
             radioButtons("quote", "Quote",
                          choices = c(None = "",
                                      "Double Quote" = '"',
                                      "Single Quote" = "'"),
                          selected = '"'),
-            
             # Horizontal line ----
             tags$hr(),
-            
             # Input: Select number of rows to display ----
             radioButtons("disp", "Display",
                          choices = c(Head = "head",
                                      All = "all"),
                          selected = "head")
-            
           ),
-          
           # Main panel for displaying outputs ----
           mainPanel(
-            
             # Output: Data file ----
             tableOutput("contents")
-            
           )
-          
         )
-        
-        
       ),
-     #
+     ######################################################################
       tabPanel(
         "Genotyping 分型",
          sidebarLayout(
@@ -126,14 +111,13 @@
             plotOutput("distPlot")
           )
         )
-        
       ),
-     # 
-     tabPanel(
+     ######################################################################
+      tabPanel(
        "Result download 结果报告"
      )
-     #
-   )
+    #######################################################################
+    )
   )
     
 
