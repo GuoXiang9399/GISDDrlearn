@@ -14,10 +14,7 @@
 # Define server logic required to draw a histogram
   function(input, output, session) {
 
-    
-    output$exampleText <- renderText({  # 渲染输出的文本
-      "这是插入的文本内容。"  # 这里是你想要插入的文本
-    })
+
     output$distPlot <- renderPlot({
 
         # generate bins based on input$bins from ui.R
