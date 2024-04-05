@@ -5,8 +5,6 @@
   library(shiny)
   library(readxl)
   library(ape)
-  library(ggplot2)
-  #library(caret)
 ###############################################################################
 # Shiny UI
   fluidPage(
@@ -24,9 +22,9 @@
         h5("Due to the accessibility and afordability of E gene, our highresolution genotyping can be employed as a transitional or linkage scheme reconciling the classical E gene genotyping with the emerging genomic epidemiology. For all GISDDrlearn models, the model was trained using DENV complete E sequences and their designated serotypes, genotypes, subgenotyps, and clades. GISDDrlearn can assign 1000 E sequences in ~30 seconds."),
         hr(),
         h2("Usage"),
-        h5("(1) Import fasta files"),
+        h5("(1) Import fasta files (Complete E gene 1485bp)"),
         h5("(2) Genotyping based on Random Forest"),
-        h5("(3) Result download"),
+        h5("(3) Result check"),
         hr(),
         h2("Data source"),
         a(href = "http://www.bic.ac.cn/GISDD/#/",
@@ -69,7 +67,7 @@
           sidebarPanel(
             fileInput("file1", "Choose fasta/fas File",
                       multiple = FALSE,
-                      accept = c("text/csv",".csv",
+                      accept = c("text/csv",".csv",".fas",".fasta",".fa",
                                  "text/comma-separated-values,text/plain")),
             tags$hr(),
             checkboxInput("header", "Header", TRUE),
@@ -77,8 +75,8 @@
             radioButtons("disp", "Display",
                          choices = c(Head = "head",
                                      All = "all"),
-                         selected = "all") ,
-            downloadButton("downloadData", "Download")
+                         selected = "head") #,
+            #downloadButton("downloadData", "Download")
             ),
           mainPanel(
             # Output: Data file ----

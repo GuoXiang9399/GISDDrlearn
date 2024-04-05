@@ -3,10 +3,8 @@
 ###############################################################################
 #loading package
   library(shiny)
-  library(readxl)
+  library(tidyr)
   library(ape)
-  library(ggplot2)
-  #library(caret)
 ###############################################################################
 # Define server logic required to draw a histogram
   function(input, output, session) {
@@ -37,29 +35,24 @@
         write.csv(datasetInput(), file, row.names = FALSE)
       })
     #######################################################################
-    output$contents <- renderTable({
-        # Read in the input file
-        req(input$file1)
-        # Load the rffit2 model
-        rffit2 <- load("model/rffit2.rda")
-        dfraw <- read.dna(input$file1$datapath,format="fasta")
-        # Convert the input data to a character vector
-        df <- as.character(dfraw)  
-        # Convert the input data to a data frame
-        df <- as.data.frame(df)    
-        # Make predictions using the rffit2 model
-        Prediction <- predict(rffit2,type = 'class',
-                              newdata = as.data.frame(df)  )
-        # Create a data frame containing the prediction results
+    output$contents <- renderTable({  
+      load("model/rffit2.rda")   
+      if (exists("rffit2") && !is.character(rffit2)) {  
+        req(input$file1)  
+        dfraw <- read.dna(input$file1$datapath, format = "fasta", as.character = TRUE)  
+        df <- as.data.frame(dfraw, row.names = NULL)  
+        predictions <- predict(rffit2, df)  
         predictionResult <- data.frame(
-            SequenceName=labels.DNAbin(dfraw),
-            Pred_Subgenotype=Prediction,
-            model=c("rffit.v20240405"))
-        # Try to create the data frame, and if there's an error, return "N/A"
-        tryCatch(
-          predictionResult
-        )
-      })
+          Sequence=labels.DNAbin(dfraw),
+          Pred_Subgenotype=predictions,
+          model=c("rffit.v20240405"))
+        predictionResult <- separate(predictionResult,Pred_Subgenotype,
+            into=c("Serotype","Subgenotype"),sep="_")
+        return(predictionResult)
+      } else {  
+        stop("The model object is not loaded correctly or does not exist.")  
+      }  
+    })
     #######################################################################
   }
     
