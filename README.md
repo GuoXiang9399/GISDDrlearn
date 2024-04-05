@@ -17,7 +17,7 @@ install_github('GuoXiang9399/GISDDrlearn')
 ```
 
 ```
-library(ISDDrlearn)
+library(GISDDrlearn)
 ```
 
 Dependency:  r-package: shiny, tidyr,ape
