@@ -7,9 +7,25 @@ Due to the accessibility and afordability of E gene, our highresolution genotypi
 
 <img src="Picture/ui.png" width="100%" style="display: block; margin: auto;" />
 
+## 
+
 ## Installation
 
-in
+```
+library(devtools)
+install_github('GuoXiang9399/GISDDrlearn')
+```
+
+```
+library(ISDDrlearn)
+```
+
+Dependency:  r-package: shiny, tidyr,ape
+```
+library(shiny)
+library(tidyr)
+library(ape)
+```
 
 ## Usage
 
