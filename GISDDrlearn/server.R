@@ -38,19 +38,24 @@
       })
     #######################################################################
     output$contents <- renderTable({
+        # Read in the input file
         req(input$file1)
+        # Load the rffit2 model
         rffit2 <- load("model/rffit2.rda")
-        #df <- read.dna("test.fas",format="fasta")
-        df <- read.dna(input$file1$datapath,format="fasta")
-        library(ape)
-        df <- as.character(df)  
+        dfraw <- read.dna(input$file1$datapath,format="fasta")
+        # Convert the input data to a character vector
+        df <- as.character(dfraw)  
+        # Convert the input data to a data frame
         df <- as.data.frame(df)    
+        # Make predictions using the rffit2 model
         Prediction <- predict(rffit2,type = 'class',
                               newdata = as.data.frame(df)  )
+        # Create a data frame containing the prediction results
         predictionResult <- data.frame(
             SequenceName=labels.DNAbin(dfraw),
             Pred_Subgenotype=Prediction,
             model=c("rffit.v20240405"))
+        # Try to create the data frame, and if there's an error, return "N/A"
         tryCatch(
           predictionResult
         )
