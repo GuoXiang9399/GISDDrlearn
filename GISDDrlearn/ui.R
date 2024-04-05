@@ -1,15 +1,12 @@
 ###############################################################################
-#                                                                             #
-# This is the user-interface definition of a Shiny web application. You can   #
-# run the application by clicking 'Run App' above.                            #
-#                                                                             #
-# Find out more about building applications with Shiny here:                  #
-#                                                                             #
-#    https://shiny.posit.co/                                                  #
-#                                                                             #
+###############################################################################
 ###############################################################################
 #loading package
   library(shiny)
+  library(readxl)
+  library(ape)
+  library(ggplot2)
+  #library(caret)
 ###############################################################################
 # Shiny UI
   fluidPage(
@@ -53,69 +50,42 @@
           target = "_blank"),
       ),
      ######################################################################
+     tabPanel(
+       "GISDD frame 分型框架",
+       sidebarLayout(
+         sidebarPanel(
+           radioButtons("picture", "Picture:",
+                        c("structure", "frame"))
+         ),
+         mainPanel(
+           imageOutput("image2")
+         )
+       )
+     ),
+     ######################################################################
       tabPanel(
-        "Import data 数据导入",
+        "Genotyping 分型工具",
          sidebarLayout(
-          
-          # Sidebar panel for inputs ----
           sidebarPanel(
-            # Input: Select a file ----
-            fileInput("file1", "Choose CSV File",
+            fileInput("file1", "Choose fasta/fas File",
                       multiple = FALSE,
-                      accept = c("text/csv",
-                                 "text/comma-separated-values,text/plain",
-                                 ".csv")),
-            # Horizontal line ----
+                      accept = c("text/csv",".csv",
+                                 "text/comma-separated-values,text/plain")),
             tags$hr(),
-            # Input: Checkbox if file has header ----
             checkboxInput("header", "Header", TRUE),
-            # Input: Select separator ----
-            radioButtons("sep", "Separator",
-                         choices = c(Comma = ",",
-                                     Semicolon = ";",
-                                     Tab = "\t"),
-                         selected = ","),
-            # Input: Select quotes ----
-            radioButtons("quote", "Quote",
-                         choices = c(None = "",
-                                     "Double Quote" = '"',
-                                     "Single Quote" = "'"),
-                         selected = '"'),
-            # Horizontal line ----
             tags$hr(),
-            # Input: Select number of rows to display ----
             radioButtons("disp", "Display",
                          choices = c(Head = "head",
                                      All = "all"),
-                         selected = "head")
-          ),
-          # Main panel for displaying outputs ----
+                         selected = "all") ,
+            downloadButton("downloadData", "Download")
+            ),
           mainPanel(
             # Output: Data file ----
             tableOutput("contents")
           )
         )
       ),
-     ######################################################################
-      tabPanel(
-        "Genotyping 分型",
-         sidebarLayout(
-          sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)  ),
-          # Show a plot of the generated distribution
-          mainPanel(
-            plotOutput("distPlot")
-          )
-        )
-      ),
-     ######################################################################
-      tabPanel(
-       "Result download 结果报告"
-     )
     #######################################################################
     )
   )
