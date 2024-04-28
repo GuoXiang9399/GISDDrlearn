@@ -6,9 +6,7 @@ Author: Xiang Guo
 Authors@R: c(person("Guo", "Xiang", email = "guoxiang199399@163.com",
                     role = c("aut", "cre")),
 			 person("Chen", "Tong", email = "chentong_biology@163.com",
-                    role = c("aut", "cre")),
-             person("Fan", "Mingjie", email = "train@ehbio.com",
-                    role = c("aut")))
+                    role = c("aut", "cre")))
 Maintainer: The package maintainer <guoxiang199399@163.com>
 Description: a easy-used R Shiny app for assigning DENV sequences.
 License: GPL-2
@@ -21,4 +19,4 @@ URL: https://www.bic.ac.cn/BIC
 Depends:
   R (>= 3.1)
 Imports:
-  ggplot2
+  shiny, tidyr, ape, caret, ranger
