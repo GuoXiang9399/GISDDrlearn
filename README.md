@@ -11,29 +11,26 @@ Due to the accessibility and afordability of E gene, our highresolution genotypi
 
 ## Installation
 
+Dependency:  r-package: shiny, tidyr, ape, caret, ranger
+
 ```
 library(devtools)
 install_github('GuoXiang9399/GISDDrlearn')
 ```
 
-```
-library(GISDDrlearn)
-```
+## Usage
+The current version requires the input sequence to be the complete 1485bp E gene sequence, as shown in the demo file. In future updates of this R package, we will add a button that allows users to trim their sequences to the target E gene for easier use.
 
-Dependency:  r-package: shiny, tidyr,ape
 ```
 library(shiny)
 library(tidyr)
 library(ape)
 library(caret)
 library(ranger)
-```
-
-## Usage
-
-```
+library(GISDDrlearn)
 shiny::runApp('GISDDrlearn')
 ```
 
 ## Contributing
 Xiang Guo  Southern Medical University, China
+Please contact me by email guoxiang199399@163.com for submitting bugs.
