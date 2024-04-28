@@ -19,7 +19,11 @@ install_github('GuoXiang9399/GISDDrlearn')
 ```
 
 ## Usage
-The current version requires the input sequence to be the complete 1485bp E gene sequence, as shown in the demo file. In future updates of this R package, we will add a button that allows users to trim their sequences to the target E gene for easier use.
+The current version requires the input sequence to be the complete 1485bp E gene sequence, as shown in the demo file(.fas). 
+
+Support the inclusion of multiple sequences into the single fasta file simultaneously.
+
+In future updates of this R package, we will add a button that allows users to trim their sequences to the target E gene for easier use.
 
 ```
 library(shiny)
@@ -30,6 +34,8 @@ library(ranger)
 library(GISDDrlearn)
 shiny::runApp('GISDDrlearn')
 ```
+
+<img src="Picture/result.png" width="100%" style="display: block; margin: auto;" />
 
 ## Contributing
 Xiang Guo  Southern Medical University, China
