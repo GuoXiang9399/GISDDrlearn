@@ -66,7 +66,21 @@
         "Genotyping 分型工具",
          sidebarLayout(
           sidebarPanel(
-            fileInput("file1", "Choose fasta/fas File",
+            h4("Current GISDD version:"),
+            h1("v1.3.2"),
+            tags$hr(),
+            selectInput("dataset1", "Choose a subgenotype model:",
+                        choices = c("rffit_GISDD.1.3.2_D1_Subgenotype", 
+                                    "rffit_GISDD.1.3.2_D2_Subgenotype",
+                                    "rffit_GISDD.1.3.2_D3_Subgenotype", 
+                                    "rffit_GISDD.1.3.2_D4_Subgenotype")),
+            selectInput("dataset2", "Choose a clade model:",
+                        choices = c("rffit_GISDD.1.3.2_D1_Clade", 
+                                    "rffit_GISDD.1.3.2_D2_Clade", 
+                                    "rffit_GISDD.1.3.2_D3_Clade", 
+                                    "rffit_GISDD.1.3.2_D4_Clade")),
+            tags$hr(),
+            fileInput("file1", "Choose fasta/fas File:",
                       multiple = FALSE,
                       accept = c("text/csv",".csv",".fas",".fasta",".fa",
                                  "text/comma-separated-values,text/plain")),
@@ -76,8 +90,9 @@
             radioButtons("disp", "Display",
                          choices = c(Head = "head",
                                      All = "all"),
-                         selected = "head") #,
+                         selected = "head") ,
             #downloadButton("downloadData", "Download")
+            submitButton("Submit")
             ),
           mainPanel(
             # Output: Data file ----
