@@ -29,6 +29,14 @@
         }
       }, deleteFile = FALSE)  
     #######################################################################
+    output$downloadData <- downloadHandler(
+      filename = function() {
+        paste(input$dataset, ".csv", sep = "")
+      },
+      content = function(file) {
+        write.csv(datasetInput(), file, row.names = FALSE)
+      })
+    #######################################################################
     load_model <- function(model_path) {  
       load(model_path)  
       model_name <- tools::file_path_sans_ext(basename(model_path))  
@@ -79,5 +87,4 @@
     #######################################################################
   }
     
-
 
