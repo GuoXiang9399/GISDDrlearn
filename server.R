@@ -40,7 +40,7 @@
     load_model <- function(model_path) {  
       load(model_path)  
       model_name <- tools::file_path_sans_ext(basename(model_path))  
-      get(model_name,)  
+      get(model_name)  
     }  
     datasetInput1 <- reactive({  
       paste0("model/", input$dataset1, ".rda")  
