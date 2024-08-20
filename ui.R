@@ -33,13 +33,13 @@
           target = "_blank"),
         hr(),
         h4("Usage"),
+        img(src = "Usage.png", alt = "D1 Genome Image", style = "width:75%;height:auto;"),
         h5("(1). Click the Genotyping TabPanel"),
         h5("(2). Check the GISDD version"),
         h5("(3). Choose subgenotype & clade model"),
         h5("(4). Import fasta files (NOTE: must Complete E gene)"),
         h5("(5). Click the Submit bottom"),
         h5("(6). Check the genotyping results"),
-        img(src = "Usage.png", alt = "D1 Genome Image", style = "width:75%;height:auto;"),
         hr()
       ),
      ######################################################################
