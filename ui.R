@@ -28,7 +28,7 @@
         h5("All GISDDrlearn models trained with complete E sequences of DENV and their designated serotypes, genotypes, subgenotyps, and clades can assign 1000 E sequences in approximately 30 seconds."),
         hr(),
         h4("Demo file"),
-        a(href = "https://www.smu.edu.cn/rdyjs/index.htm",
+        a(href = "https://github.com/GuoXiang9399/GISDDrlearn/tree/main/Data",
           "file download",
           target = "_blank"),
         hr(),
